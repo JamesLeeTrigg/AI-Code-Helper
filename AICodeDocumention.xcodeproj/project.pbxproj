@@ -16,6 +16,7 @@
 		FE847D1429C3914B00D2FC56 /* AICodeDocumentionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847D1329C3914B00D2FC56 /* AICodeDocumentionTests.swift */; };
 		FE847D1E29C3914B00D2FC56 /* AICodeDocumentionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847D1D29C3914B00D2FC56 /* AICodeDocumentionUITests.swift */; };
 		FE847D2029C3914B00D2FC56 /* AICodeDocumentionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847D1F29C3914B00D2FC56 /* AICodeDocumentionUITestsLaunchTests.swift */; };
+		FE847D2E29C3938400D2FC56 /* XcodeProj in Frameworks */ = {isa = PBXBuildFile; productRef = FE847D2D29C3938400D2FC56 /* XcodeProj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE847D2E29C3938400D2FC56 /* XcodeProj in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +153,9 @@
 			dependencies = (
 			);
 			name = AICodeDocumention;
+			packageProductDependencies = (
+				FE847D2D29C3938400D2FC56 /* XcodeProj */,
+			);
 			productName = AICodeDocumention;
 			productReference = FE847CF929C3914A00D2FC56 /* AICodeDocumention.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +228,9 @@
 				Base,
 			);
 			mainGroup = FE847CF029C3914A00D2FC56;
+			packageReferences = (
+				FE847D2C29C3938400D2FC56 /* XCRemoteSwiftPackageReference "XcodeProj" */,
+			);
 			productRefGroup = FE847CFA29C3914A00D2FC56 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -584,6 +592,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE847D2C29C3938400D2FC56 /* XCRemoteSwiftPackageReference "XcodeProj" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tuist/XcodeProj.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE847D2D29C3938400D2FC56 /* XcodeProj */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE847D2C29C3938400D2FC56 /* XCRemoteSwiftPackageReference "XcodeProj" */;
+			productName = XcodeProj;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FE847D0729C3914B00D2FC56 /* AICodeDocumention.xcdatamodeld */ = {
