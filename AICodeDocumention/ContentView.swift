@@ -3,6 +3,11 @@ import UniformTypeIdentifiers
 import XcodeProj
 import PathKit
 import UniformTypeIdentifiers
+#if os(macOS)
+import AppKit
+#else
+import UIKit
+#endif
 
 extension UTType {
     static var xcodeProject: UTType {
@@ -10,6 +15,20 @@ extension UTType {
                conformingTo: .directory)
     }
 }
+
+struct CustomButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 15)
+            .background(Color.blue)
+            .cornerRadius(10)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+    }
+}
+
 
 struct ContentView: View {
     @State private var selectedTarget: String = "All Targets"
@@ -20,36 +39,68 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Button("Select Xcode Project") {
-                selectProjectFolder()
-            }
-
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Selected Xcode Project: \(projectURL?.lastPathComponent ?? "None")")
-
-                VStack {
-                    Text("Selected Target: \(selectedTarget)")
-                    
-                    Picker("Target", selection: $selectedTarget) {
-                        pickerContent()
-                    }
-                    .pickerStyle(DefaultPickerStyle())
+            Button(action: selectProjectFolder) {
+                HStack {
+                    Image(systemName: "folder")
+                        .foregroundColor(.white)
+                        .imageScale(.large)
+                    Text("Select Xcode Project")
                 }
-                .id(UUID())
+            }
+            .buttonStyle(CustomButtonStyle())
+            
+            if projectURL != nil || true {
+                VStack(alignment: .leading, spacing: 10) {
+                    VStack {
+                        Text("Selected Target: \(selectedTarget)")
+                        
+                        Picker("Target", selection: $selectedTarget) {
+                            pickerContent()
+                        }
+                        .pickerStyle(DefaultPickerStyle())
+                    }
+                    .id(UUID())
+                    
+                    Text("Selected Xcode Project: \(projectURL?.lastPathComponent ?? "None")")
+                }
+            
+                Button(action: generateDocumentation) {
+                    HStack {
+                        Image(systemName: "doc.text")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                        Text("Generate Documentation")
+                    }
+                }.buttonStyle(CustomButtonStyle())
             }
 
-
-            Button("Generate Documentation") {
-                generateDocumentation()
+            // copy the generated documentation to the clipboard
+            // only show the button if there is documentation to copy
+            if !documentText.isEmpty || true {
+                Button(action : copyToClipboard) {
+                    HStack {
+                        Image(systemName: "doc.on.doc")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                        Text("Copy Documentation to Clipboard")
+                    }
+                }.buttonStyle(CustomButtonStyle())
+                // Add the total word count label
+                if !documentText.isEmpty {
+                    Text("Total Word Count: \(wordCount)")
+                        .padding(.top)
+                }
             }
 
-
+/*
             ScrollView {
                 Text(documentText)
                     .padding()
             }
+ */
         }
         .padding()
+        .frame(minWidth: 600,minHeight: 400)
     }
     
     @ViewBuilder
@@ -57,6 +108,13 @@ struct ContentView: View {
         ForEach(projectTargets, id: \.self) {
             Text($0)
         }
+    }
+    
+    
+    private func copyToClipboard() {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(documentText, forType: .string)
     }
     
     private func selectProjectFolder() {
@@ -121,6 +179,13 @@ struct ContentView: View {
             }
 
             var documentation = ""
+            let fileTypesHeadings: [String: String] = [
+                "swift": "Swift File",
+                "json": "JSON File",
+                "txt": "Text File",
+                "md": "Markdown File",
+                // Add more file types and their headings here
+            ]
 
             // Process each target
             for target in targetsToProcess {
@@ -139,16 +204,8 @@ struct ContentView: View {
                         continue
                     }
 
-                    let heading: String
-
-                    switch fileType {
-                    case "swift":
-                        heading = "Swift File: \(source.path ?? "Unnamed")"
-                    case "json":
-                        heading = "JSON File: \(source.path ?? "Unnamed")"
-                    default:
-                        heading = "Other File: \(source.path ?? "Unnamed")"
-                    }
+                    let heading = fileTypesHeadings[fileType] ?? "Other File"
+                    documentation += "\n\(heading): \(source.path ?? "Unnamed")\n\(fileContent)\n"
 
                     documentation += "\n\(heading)\n\(fileContent)\n"
                 }
@@ -156,13 +213,30 @@ struct ContentView: View {
 
             // Update the text view with the generated documentation
             documentText = documentation
-            print(documentText)
+            //print(documentText)
         } catch {
             print("Error generating documentation:", error)
         }
     }
+    
+    private var wordCount: Int {
+        documentText.split(separator: " ").count
+    }
+    
+    // Add this code to the end of the file, after the closing brace of ContentView
+    #if DEBUG
+
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
+    }
+    #endif
+
 
 }
+
+
 
 
 

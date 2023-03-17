@@ -1,10 +1,3 @@
-//
-//  AICodeDocumentionTests.swift
-//  AICodeDocumentionTests
-//
-//  Created by James Trigg on 16/03/2023.
-//
-
 import XCTest
 @testable import AICodeDocumention
 
@@ -18,19 +11,25 @@ final class AICodeDocumentionTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testCoreDataStackSetup() {
+        let persistenceController = PersistenceController.shared
+        XCTAssertNotNil(persistenceController.container, "CoreData stack not set up properly")
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testAddItemToCoreData() {
+        let persistenceController = PersistenceController.shared
+        let viewContext = persistenceController.container.viewContext
+        let newItem = Item(context: viewContext)
+        newItem.timestamp = Date()
+
+        XCTAssertNoThrow(try viewContext.save(), "Failed to add item to CoreData")
     }
 
+    func testFetchItemsFromCoreData() {
+        let persistenceController = PersistenceController.shared
+        let viewContext = persistenceController.container.viewContext
+        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+
+        XCTAssertNoThrow(try viewContext.fetch(fetchRequest), "Failed to fetch items from CoreData")
+    }
 }
