@@ -13,7 +13,7 @@ struct AICodeDocumentionApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(isPreview: false)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
