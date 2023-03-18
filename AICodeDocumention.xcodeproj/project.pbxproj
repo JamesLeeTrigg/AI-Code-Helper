@@ -17,6 +17,9 @@
 		FE847D1E29C3914B00D2FC56 /* AICodeDocumentionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847D1D29C3914B00D2FC56 /* AICodeDocumentionUITests.swift */; };
 		FE847D2029C3914B00D2FC56 /* AICodeDocumentionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847D1F29C3914B00D2FC56 /* AICodeDocumentionUITestsLaunchTests.swift */; };
 		FE847D2E29C3938400D2FC56 /* XcodeProj in Frameworks */ = {isa = PBXBuildFile; productRef = FE847D2D29C3938400D2FC56 /* XcodeProj */; };
+		FE847D3029C4433700D2FC56 /* XcodeProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847D2F29C4433700D2FC56 /* XcodeProjectManager.swift */; };
+		FE847D3229C4444D00D2FC56 /* XcodeProjectManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847D3129C4444D00D2FC56 /* XcodeProjectManagerTests.swift */; };
+		FE847D3429C5C73C00D2FC56 /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847D3329C5C73C00D2FC56 /* FileListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		FE847D1929C3914B00D2FC56 /* AICodeDocumentionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AICodeDocumentionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE847D1D29C3914B00D2FC56 /* AICodeDocumentionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICodeDocumentionUITests.swift; sourceTree = "<group>"; };
 		FE847D1F29C3914B00D2FC56 /* AICodeDocumentionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICodeDocumentionUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FE847D2F29C4433700D2FC56 /* XcodeProjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeProjectManager.swift; sourceTree = "<group>"; };
+		FE847D3129C4444D00D2FC56 /* XcodeProjectManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeProjectManagerTests.swift; sourceTree = "<group>"; };
+		FE847D3329C5C73C00D2FC56 /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +109,12 @@
 			children = (
 				FE847CFC29C3914A00D2FC56 /* AICodeDocumentionApp.swift */,
 				FE847CFE29C3914A00D2FC56 /* ContentView.swift */,
+				FE847D3329C5C73C00D2FC56 /* FileListView.swift */,
 				FE847D0029C3914B00D2FC56 /* Assets.xcassets */,
 				FE847D0529C3914B00D2FC56 /* Persistence.swift */,
 				FE847D0A29C3914B00D2FC56 /* AICodeDocumention.entitlements */,
 				FE847D0729C3914B00D2FC56 /* AICodeDocumention.xcdatamodeld */,
+				FE847D2F29C4433700D2FC56 /* XcodeProjectManager.swift */,
 				FE847D0229C3914B00D2FC56 /* Preview Content */,
 			);
 			path = AICodeDocumention;
@@ -124,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				FE847D1329C3914B00D2FC56 /* AICodeDocumentionTests.swift */,
+				FE847D3129C4444D00D2FC56 /* XcodeProjectManagerTests.swift */,
 			);
 			path = AICodeDocumentionTests;
 			sourceTree = "<group>";
@@ -273,7 +282,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE847D3029C4433700D2FC56 /* XcodeProjectManager.swift in Sources */,
 				FE847D0929C3914B00D2FC56 /* AICodeDocumention.xcdatamodeld in Sources */,
+				FE847D3429C5C73C00D2FC56 /* FileListView.swift in Sources */,
 				FE847D0629C3914B00D2FC56 /* Persistence.swift in Sources */,
 				FE847CFF29C3914A00D2FC56 /* ContentView.swift in Sources */,
 				FE847CFD29C3914A00D2FC56 /* AICodeDocumentionApp.swift in Sources */,
@@ -285,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE847D1429C3914B00D2FC56 /* AICodeDocumentionTests.swift in Sources */,
+				FE847D3229C4444D00D2FC56 /* XcodeProjectManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +457,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Trigg.AICodeDocumention";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -472,6 +485,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Trigg.AICodeDocumention";
 				PRODUCT_NAME = "$(TARGET_NAME)";
