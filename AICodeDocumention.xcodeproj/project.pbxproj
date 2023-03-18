@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE16368C29C615620004CB71 /* FileListToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16368B29C615620004CB71 /* FileListToolbarView.swift */; };
+		FE16368E29C623520004CB71 /* XcodeProjectManager+Selections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16368D29C623520004CB71 /* XcodeProjectManager+Selections.swift */; };
+		FE16369029C635CA0004CB71 /* FileTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16368F29C635CA0004CB71 /* FileTypeSelectionView.swift */; };
 		FE847CFD29C3914A00D2FC56 /* AICodeDocumentionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847CFC29C3914A00D2FC56 /* AICodeDocumentionApp.swift */; };
 		FE847CFF29C3914A00D2FC56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847CFE29C3914A00D2FC56 /* ContentView.swift */; };
 		FE847D0129C3914B00D2FC56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE847D0029C3914B00D2FC56 /* Assets.xcassets */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE16368B29C615620004CB71 /* FileListToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListToolbarView.swift; sourceTree = "<group>"; };
+		FE16368D29C623520004CB71 /* XcodeProjectManager+Selections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeProjectManager+Selections.swift"; sourceTree = "<group>"; };
+		FE16368F29C635CA0004CB71 /* FileTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeSelectionView.swift; sourceTree = "<group>"; };
 		FE847CF929C3914A00D2FC56 /* AICodeDocumention.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AICodeDocumention.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE847CFC29C3914A00D2FC56 /* AICodeDocumentionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICodeDocumentionApp.swift; sourceTree = "<group>"; };
 		FE847CFE29C3914A00D2FC56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE16368A29C615490004CB71 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				FE16368B29C615620004CB71 /* FileListToolbarView.swift */,
+				FE16368F29C635CA0004CB71 /* FileTypeSelectionView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		FE847CF029C3914A00D2FC56 = {
 			isa = PBXGroup;
 			children = (
@@ -107,14 +122,16 @@
 		FE847CFB29C3914A00D2FC56 /* AICodeDocumention */ = {
 			isa = PBXGroup;
 			children = (
+				FE16368A29C615490004CB71 /* Subviews */,
 				FE847CFC29C3914A00D2FC56 /* AICodeDocumentionApp.swift */,
 				FE847CFE29C3914A00D2FC56 /* ContentView.swift */,
 				FE847D3329C5C73C00D2FC56 /* FileListView.swift */,
+				FE847D2F29C4433700D2FC56 /* XcodeProjectManager.swift */,
+				FE16368D29C623520004CB71 /* XcodeProjectManager+Selections.swift */,
 				FE847D0029C3914B00D2FC56 /* Assets.xcassets */,
 				FE847D0529C3914B00D2FC56 /* Persistence.swift */,
 				FE847D0A29C3914B00D2FC56 /* AICodeDocumention.entitlements */,
 				FE847D0729C3914B00D2FC56 /* AICodeDocumention.xcdatamodeld */,
-				FE847D2F29C4433700D2FC56 /* XcodeProjectManager.swift */,
 				FE847D0229C3914B00D2FC56 /* Preview Content */,
 			);
 			path = AICodeDocumention;
@@ -282,7 +299,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE16368E29C623520004CB71 /* XcodeProjectManager+Selections.swift in Sources */,
 				FE847D3029C4433700D2FC56 /* XcodeProjectManager.swift in Sources */,
+				FE16368C29C615620004CB71 /* FileListToolbarView.swift in Sources */,
+				FE16369029C635CA0004CB71 /* FileTypeSelectionView.swift in Sources */,
 				FE847D0929C3914B00D2FC56 /* AICodeDocumention.xcdatamodeld in Sources */,
 				FE847D3429C5C73C00D2FC56 /* FileListView.swift in Sources */,
 				FE847D0629C3914B00D2FC56 /* Persistence.swift in Sources */,

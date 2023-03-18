@@ -10,6 +10,17 @@ import PathKit
 import UniformTypeIdentifiers
 import AppKit
 
+enum SubType: String, CaseIterable  {
+    case swiftUIView = "SwiftUI View"
+    case uiViewController = "UIKit ViewController"
+    case networking = "Networking"
+    case utility = "Utility"
+    case manager = "Manager"
+    case viewModel = "ViewModel"
+    case service = "Service"
+    case other = "Other"
+}
+
 struct FileItem: Identifiable {
     let id = UUID()
     let name: String
@@ -18,6 +29,7 @@ struct FileItem: Identifiable {
     var wordCount: Int {
         return content.split(separator: " ").count
     }
+    var subtype: SubType
 }
 
 class XcodeProjectManager: ObservableObject {
@@ -35,6 +47,8 @@ class XcodeProjectManager: ObservableObject {
     }
     @Published var wordCount: Int = 0
     @Published var fileList: [FileItem] = []
+    @Published var selectedSubtypes: Set<SubType> = []
+
     
     func selectProjectFolder() {
         let openPanel = NSOpenPanel()
@@ -88,7 +102,7 @@ class XcodeProjectManager: ObservableObject {
     func generateDocumentation() {
         guard let projectURL = projectURL else { return }
         
-        fileList = [] // Reset fileList
+        //fileList = [] // Reset fileList
 
         do {
             let xcodeProject = try XcodeProj(path: .init(projectURL.appendingPathComponent("\(projectURL.lastPathComponent).xcodeproj").path))
@@ -113,8 +127,8 @@ class XcodeProjectManager: ObservableObject {
                     let filePath = PathKit.Path(sourcePath)
                     if filePath.isDirectory { continue }
                     let fileContent = try String(contentsOfFile: filePath.string)
-                    
-                    let fileItem = FileItem(name: source.path ?? "Unnamed", content: fileContent, isSelected: true)
+                    let subType = determineSubType(name: source.path ?? "Unnamed", content: fileContent)
+                    let fileItem = FileItem(name: source.path ?? "Unnamed", content: fileContent, isSelected: true, subtype: subType)
                     fileList.append(fileItem) // Add file to fileList
 
                     documentation += "\n\(fileItem.name)\n\(fileContent)\n"
@@ -140,6 +154,25 @@ class XcodeProjectManager: ObservableObject {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(documentText, forType: .string)
+    }
+    
+    private func determineSubType(name: String, content: String) -> SubType {
+        if content.contains("import SwiftUI") && content.contains("struct") && content.contains(": View") {
+            return .swiftUIView
+        } else if content.contains("import UIKit") && content.contains("class") && content.contains(": UIViewController") {
+            return .uiViewController
+        } else if content.contains("import Foundation") && content.contains("class") && content.contains("Networking") {
+            return .networking
+        } else if content.contains("import Foundation") && content.contains("class") && content.contains("Utility") {
+            return .utility
+        } else if content.contains("import Foundation") && content.contains("class") && content.contains("Manager") {
+            return .manager
+        } else if content.contains("import Foundation") && content.contains("class") && content.contains("ViewModel") {
+            return .viewModel
+        } else if content.contains("import Foundation") && content.contains("class") && content.contains("Service") {
+            return .service
+        }
+        return .other
     }
 }
 
