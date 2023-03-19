@@ -14,33 +14,40 @@ struct FileListToolbarView: View {
     @State private var showFileTypeSelection = false
 
     var body: some View {
-        HStack(spacing: 20) {
-            createButton(
-                icon: "checkmark.circle",
-                label: "Select All",
-                action: manager.selectAll,
-                tooltip: "Select all files"
-            )
-            createButton(
-                icon: "xmark.circle",
-                label: "Select None",
-                action: manager.selectNone,
-                tooltip: "Deselect all files"
-            )
-            createButton(
-                icon: "arrow.triangle.2.circlepath.circle",
-                label: "Toggle Views",
-                action: manager.toggleViews,
-                tooltip: "Toggle between views"
-            )
-            createButton(
-                icon: "doc.text",
-                label: "Toggle File Types",
-                action: {
-                    self.showFileTypeSelection.toggle()
-                },
-                tooltip: "Toggle between file types"
-            )
+        VStack {
+            HStack(spacing: 20) {
+                createButton(
+                    icon: "checkmark.circle",
+                    label: "Select All",
+                    action: manager.selectAll,
+                    tooltip: "Select all files"
+                )
+                createButton(
+                    icon: "xmark.circle",
+                    label: "Select None",
+                    action: manager.selectNone,
+                    tooltip: "Deselect all files"
+                )
+                createButton(
+                    icon: "arrow.triangle.2.circlepath.circle",
+                    label: "Toggle Views",
+                    action: manager.toggleViews,
+                    tooltip: "Toggle between views"
+                )
+                createButton(
+                    icon: "doc.text",
+                    label: "Toggle File Types",
+                    action: {
+                        self.showFileTypeSelection.toggle()
+                    },
+                    tooltip: "Toggle between file types"
+                )
+            }
+            
+            if showFileTypeSelection {
+                FileTypeSelectionView()
+            }
+            
         }
     }
 
@@ -58,9 +65,6 @@ struct FileListToolbarView: View {
             }
             .buttonStyle(BorderlessButtonStyle())
             .help(tooltip)
-            .sheet(isPresented: $showFileTypeSelection) {
-                FileTypeSelectionView(showFileTypeSelection: $showFileTypeSelection)
-            }
         }
     
     struct FileListToolbarView_Previews: PreviewProvider {

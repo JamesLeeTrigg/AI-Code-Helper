@@ -9,35 +9,31 @@ import SwiftUI
 
 struct FileTypeSelectionView: View {
     @ObservedObject private var manager = XcodeProjectManager.shared
-    
-    @Binding var showFileTypeSelection: Bool
+    private let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 10), count: 3)
     
     var body: some View {
        VStack {
-           NavigationStack {
-               List(SubType.allCases, id: \.self) { subtype in
-                   Toggle(subtype.rawValue, isOn: Binding(
-                       get: { manager.selectedSubtypes.contains(subtype) },
-                       set: { isSelected in
-                           if isSelected {
-                               manager.selectedSubtypes.insert(subtype)
-                           } else {
+           ScrollView {
+               LazyVGrid(columns: columns, spacing: 10) {
+                   ForEach(Array(manager.uniqueSubTypesInFileItems).sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { subtype in
+                       Button(action: {
+                           if manager.selectedSubtypes.contains(subtype) {
                                manager.selectedSubtypes.remove(subtype)
+                           } else {
+                               manager.selectedSubtypes.insert(subtype)
                            }
-                       }))
-               }
-               .navigationTitle("Select File Types")
-               .toolbar {
-                   ToolbarItem(placement: .confirmationAction) {
-                       Button(action: { showFileTypeSelection.toggle() }) {
-                           Image(systemName: "xmark.circle")
-                       }
+                       }) {
+                           Text(subtype.rawValue)
+                               .fontWeight(.semibold)
+                               .padding(.vertical, 10)
+                               .padding(.horizontal, 20)
+                               .background(manager.selectedSubtypes.contains(subtype) ? Color.blue : Color.gray)
+                               .foregroundColor(.white)
+                               .cornerRadius(8)
+                       }.buttonStyle(BorderlessButtonStyle())
                    }
                }
-           }
-           
-                                   
-                                   
+           }.frame(maxHeight: 150)
                                    
            HStack(spacing: 20) {
                createButton(icon: "checkmark.circle", label: "Select", action:  manager.select, tooltip: "Select files with chosen types")
@@ -45,29 +41,29 @@ struct FileTypeSelectionView: View {
                createButton(icon: "arrow.triangle.2.circlepath.circle", label: "Toggle", action: manager.toggle, tooltip: "Toggle files with chosen types")
                createButton(icon: "minus.circle", label: "Deselect Others", action: manager.deselectNonMatching, tooltip: "Deselect files that don't match chosen types")
            }
-       }.frame(minWidth: 500, minHeight: 400)
+       }
     }
     
     private func createButton(icon: String, label: String, action: @escaping () -> Void, tooltip: String) -> some View {
-            Button(action: action) {
-                VStack(alignment: .center, spacing: 2) {
-                    Image(systemName: icon)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                    Text(label)
-                        .font(.caption)
-                }
-                .frame(width: 110, height: 50)
+        Button(action: action) {
+            VStack(alignment: .center, spacing: 2) {
+                Image(systemName: icon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24)
+                Text(label)
+                    .font(.caption)
             }
-            .buttonStyle(BorderlessButtonStyle())
-            .help(tooltip)
+            .frame(width: 110, height: 50)
         }
+        .buttonStyle(BorderlessButtonStyle())
+        .help(tooltip)
+    }
     
     struct FileTypeSelectionView_Previews: PreviewProvider {
         @State static private var showFileTypeSelection = false
         static var previews: some View {
-            FileTypeSelectionView(showFileTypeSelection: $showFileTypeSelection)
+            FileTypeSelectionView()
                 .previewLayout(.sizeThatFits)
                 .padding()
         }

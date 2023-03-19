@@ -48,6 +48,10 @@ class XcodeProjectManager: ObservableObject {
     @Published var wordCount: Int = 0
     @Published var fileList: [FileItem] = []
     @Published var selectedSubtypes: Set<SubType> = []
+    var uniqueSubTypesInFileItems: Set<SubType> {
+        Set(fileList.map { $0.subtype })
+    }
+
 
     
     func selectProjectFolder() {

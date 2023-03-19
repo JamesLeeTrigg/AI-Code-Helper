@@ -7,7 +7,6 @@ struct FileListView: View {
     var body: some View {
         VStack {
             FileListToolbarView()
-                .padding(.bottom)
             List {
                 ForEach(manager.fileList) { file in
                     Button(action: {
