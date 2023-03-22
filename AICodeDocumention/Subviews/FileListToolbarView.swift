@@ -7,11 +7,17 @@
 
 import SwiftUI
 
-import SwiftUI
+enum FileListToolbarSelectedOption: String, CaseIterable {
+    case selectAll = "Select All"
+    case selectNone = "Select None"
+    case toggleViews = "Toggle Views"
+    case toggleFileTypes = "Toggle File Types"
+    case none = "None"
+}
 
 struct FileListToolbarView: View {
     @ObservedObject private var manager = XcodeProjectManager.shared
-    @State private var showFileTypeSelection = false
+    @State private var selectedOption : FileListToolbarSelectedOption = .none
 
     var body: some View {
         VStack {
@@ -19,32 +25,42 @@ struct FileListToolbarView: View {
                 createButton(
                     icon: "checkmark.circle",
                     label: "Select All",
-                    action: manager.selectAll,
+                    action: {
+                        self.selectedOption = .selectAll
+                        manager.selectAll()
+                    },
                     tooltip: "Select all files"
                 )
                 createButton(
                     icon: "xmark.circle",
                     label: "Select None",
-                    action: manager.selectNone,
+                    action: {
+                        self.selectedOption = .selectNone
+                        manager.selectNone()
+                    },
                     tooltip: "Deselect all files"
                 )
                 createButton(
                     icon: "arrow.triangle.2.circlepath.circle",
                     label: "Toggle Views",
-                    action: manager.toggleViews,
+                    action: {
+                        self.selectedOption = .toggleViews
+                        manager.toggleViews()
+                    },
                     tooltip: "Toggle between views"
                 )
                 createButton(
                     icon: "doc.text",
                     label: "Toggle File Types",
                     action: {
-                        self.showFileTypeSelection.toggle()
+                        // toggle between none and toggleFileTypes
+                        self.selectedOption = self.selectedOption != .toggleFileTypes ? .toggleFileTypes : .none
                     },
                     tooltip: "Toggle between file types"
                 )
             }
             
-            if showFileTypeSelection {
+            if selectedOption == .toggleFileTypes {
                 FileTypeSelectionView()
             }
             
