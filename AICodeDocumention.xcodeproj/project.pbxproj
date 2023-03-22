@@ -10,6 +10,11 @@
 		FE16368C29C615620004CB71 /* FileListToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16368B29C615620004CB71 /* FileListToolbarView.swift */; };
 		FE16368E29C623520004CB71 /* XcodeProjectManager+Selections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16368D29C623520004CB71 /* XcodeProjectManager+Selections.swift */; };
 		FE16369029C635CA0004CB71 /* FileTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16368F29C635CA0004CB71 /* FileTypeSelectionView.swift */; };
+		FE16369329CB76D60004CB71 /* SwiftSyntax in Frameworks */ = {isa = PBXBuildFile; productRef = FE16369229CB76D60004CB71 /* SwiftSyntax */; };
+		FE16369529CB76D60004CB71 /* SwiftSyntaxBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = FE16369429CB76D60004CB71 /* SwiftSyntaxBuilder */; };
+		FE16369729CB76D60004CB71 /* SwiftSyntaxParser in Frameworks */ = {isa = PBXBuildFile; productRef = FE16369629CB76D60004CB71 /* SwiftSyntaxParser */; };
+		FE16369A29CB77210004CB71 /* SwiftInterfaceExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16369929CB77210004CB71 /* SwiftInterfaceExtractor.swift */; };
+		FE16369E29CB7DA70004CB71 /* SwiftInterfaceExtractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16369D29CB7DA70004CB71 /* SwiftInterfaceExtractorTests.swift */; };
 		FE847CFD29C3914A00D2FC56 /* AICodeDocumentionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847CFC29C3914A00D2FC56 /* AICodeDocumentionApp.swift */; };
 		FE847CFF29C3914A00D2FC56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE847CFE29C3914A00D2FC56 /* ContentView.swift */; };
 		FE847D0129C3914B00D2FC56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE847D0029C3914B00D2FC56 /* Assets.xcassets */; };
@@ -46,6 +51,8 @@
 		FE16368B29C615620004CB71 /* FileListToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListToolbarView.swift; sourceTree = "<group>"; };
 		FE16368D29C623520004CB71 /* XcodeProjectManager+Selections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeProjectManager+Selections.swift"; sourceTree = "<group>"; };
 		FE16368F29C635CA0004CB71 /* FileTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeSelectionView.swift; sourceTree = "<group>"; };
+		FE16369929CB77210004CB71 /* SwiftInterfaceExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInterfaceExtractor.swift; sourceTree = "<group>"; };
+		FE16369D29CB7DA70004CB71 /* SwiftInterfaceExtractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInterfaceExtractorTests.swift; sourceTree = "<group>"; };
 		FE847CF929C3914A00D2FC56 /* AICodeDocumention.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AICodeDocumention.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE847CFC29C3914A00D2FC56 /* AICodeDocumentionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICodeDocumentionApp.swift; sourceTree = "<group>"; };
 		FE847CFE29C3914A00D2FC56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +77,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE847D2E29C3938400D2FC56 /* XcodeProj in Frameworks */,
+				FE16369529CB76D60004CB71 /* SwiftSyntaxBuilder in Frameworks */,
+				FE16369729CB76D60004CB71 /* SwiftSyntaxParser in Frameworks */,
+				FE16369329CB76D60004CB71 /* SwiftSyntax in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +109,33 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		FE16369829CB77020004CB71 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				FE16369929CB77210004CB71 /* SwiftInterfaceExtractor.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		FE16369B29CB77470004CB71 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FE847D2F29C4433700D2FC56 /* XcodeProjectManager.swift */,
+				FE16368D29C623520004CB71 /* XcodeProjectManager+Selections.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FE16369C29CB77660004CB71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FE16368A29C615490004CB71 /* Subviews */,
+				FE847CFE29C3914A00D2FC56 /* ContentView.swift */,
+				FE847D3329C5C73C00D2FC56 /* FileListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FE847CF029C3914A00D2FC56 = {
 			isa = PBXGroup;
 			children = (
@@ -122,13 +159,11 @@
 		FE847CFB29C3914A00D2FC56 /* AICodeDocumention */ = {
 			isa = PBXGroup;
 			children = (
-				FE16368A29C615490004CB71 /* Subviews */,
-				FE847CFC29C3914A00D2FC56 /* AICodeDocumentionApp.swift */,
-				FE847CFE29C3914A00D2FC56 /* ContentView.swift */,
-				FE847D3329C5C73C00D2FC56 /* FileListView.swift */,
-				FE847D2F29C4433700D2FC56 /* XcodeProjectManager.swift */,
-				FE16368D29C623520004CB71 /* XcodeProjectManager+Selections.swift */,
+				FE16369C29CB77660004CB71 /* Views */,
+				FE16369B29CB77470004CB71 /* Services */,
+				FE16369829CB77020004CB71 /* Tools */,
 				FE847D0029C3914B00D2FC56 /* Assets.xcassets */,
+				FE847CFC29C3914A00D2FC56 /* AICodeDocumentionApp.swift */,
 				FE847D0529C3914B00D2FC56 /* Persistence.swift */,
 				FE847D0A29C3914B00D2FC56 /* AICodeDocumention.entitlements */,
 				FE847D0729C3914B00D2FC56 /* AICodeDocumention.xcdatamodeld */,
@@ -150,6 +185,7 @@
 			children = (
 				FE847D1329C3914B00D2FC56 /* AICodeDocumentionTests.swift */,
 				FE847D3129C4444D00D2FC56 /* XcodeProjectManagerTests.swift */,
+				FE16369D29CB7DA70004CB71 /* SwiftInterfaceExtractorTests.swift */,
 			);
 			path = AICodeDocumentionTests;
 			sourceTree = "<group>";
@@ -181,6 +217,9 @@
 			name = AICodeDocumention;
 			packageProductDependencies = (
 				FE847D2D29C3938400D2FC56 /* XcodeProj */,
+				FE16369229CB76D60004CB71 /* SwiftSyntax */,
+				FE16369429CB76D60004CB71 /* SwiftSyntaxBuilder */,
+				FE16369629CB76D60004CB71 /* SwiftSyntaxParser */,
 			);
 			productName = AICodeDocumention;
 			productReference = FE847CF929C3914A00D2FC56 /* AICodeDocumention.app */;
@@ -256,6 +295,7 @@
 			mainGroup = FE847CF029C3914A00D2FC56;
 			packageReferences = (
 				FE847D2C29C3938400D2FC56 /* XCRemoteSwiftPackageReference "XcodeProj" */,
+				FE16369129CB76D60004CB71 /* XCRemoteSwiftPackageReference "swift-syntax" */,
 			);
 			productRefGroup = FE847CFA29C3914A00D2FC56 /* Products */;
 			projectDirPath = "";
@@ -306,6 +346,7 @@
 				FE847D0929C3914B00D2FC56 /* AICodeDocumention.xcdatamodeld in Sources */,
 				FE847D3429C5C73C00D2FC56 /* FileListView.swift in Sources */,
 				FE847D0629C3914B00D2FC56 /* Persistence.swift in Sources */,
+				FE16369A29CB77210004CB71 /* SwiftInterfaceExtractor.swift in Sources */,
 				FE847CFF29C3914A00D2FC56 /* ContentView.swift in Sources */,
 				FE847CFD29C3914A00D2FC56 /* AICodeDocumentionApp.swift in Sources */,
 			);
@@ -315,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE16369E29CB7DA70004CB71 /* SwiftInterfaceExtractorTests.swift in Sources */,
 				FE847D1429C3914B00D2FC56 /* AICodeDocumentionTests.swift in Sources */,
 				FE847D3229C4444D00D2FC56 /* XcodeProjectManagerTests.swift in Sources */,
 			);
@@ -523,7 +565,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F6FM6AKHXL;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Trigg.AICodeDocumentionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -542,7 +584,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F6FM6AKHXL;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Trigg.AICodeDocumentionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -560,6 +602,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F6FM6AKHXL;
 				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Trigg.AICodeDocumentionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -577,6 +620,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F6FM6AKHXL;
 				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "James-Trigg.AICodeDocumentionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,6 +672,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FE16369129CB76D60004CB71 /* XCRemoteSwiftPackageReference "swift-syntax" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-syntax.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.50700.1;
+			};
+		};
 		FE847D2C29C3938400D2FC56 /* XCRemoteSwiftPackageReference "XcodeProj" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tuist/XcodeProj.git";
@@ -639,6 +691,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FE16369229CB76D60004CB71 /* SwiftSyntax */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE16369129CB76D60004CB71 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntax;
+		};
+		FE16369429CB76D60004CB71 /* SwiftSyntaxBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE16369129CB76D60004CB71 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxBuilder;
+		};
+		FE16369629CB76D60004CB71 /* SwiftSyntaxParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE16369129CB76D60004CB71 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxParser;
+		};
 		FE847D2D29C3938400D2FC56 /* XcodeProj */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FE847D2C29C3938400D2FC56 /* XCRemoteSwiftPackageReference "XcodeProj" */;
