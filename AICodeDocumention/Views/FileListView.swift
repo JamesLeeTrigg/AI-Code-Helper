@@ -15,9 +15,10 @@ struct FileListView: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(file.name)
-                                Text("\(file.wordCount) words")
+                                Text("\(file.wordCount) words - just interface: \(file.interfaceCount) words")
                                     .font(.footnote)
                                     .foregroundColor(.gray)
+                            
                             }
                             Spacer()
                             Image(systemName: file.isSelected ? "checkmark.square" : "square")
@@ -50,9 +51,9 @@ struct FileListView: View {
         static var previews: some View {
             let manager = XcodeProjectManager.shared
             manager.fileList = [
-                FileItem(name: "File1.swift", content: "Some content", isSelected: true, subtype: .swiftUIView),
-                FileItem(name: "File2.swift", content: "Another content", isSelected: false, subtype: .swiftUIView),
-                FileItem(name: "File3.swift", content: "More content", isSelected: true, subtype: .swiftUIView)
+                FileItem(name: "File1.swift", content: "Some content", isSelected: true, subtype: .swiftUIView, interface: "class test"),
+                FileItem(name: "File2.swift", content: "Another content", isSelected: false, subtype: .swiftUIView, interface: "class test"),
+                FileItem(name: "File3.swift", content: "More content", isSelected: true, subtype: .swiftUIView, interface: "class test")
             ]
 
             return NavigationStack {

@@ -21,6 +21,14 @@ enum SubType: String, CaseIterable  {
     case other = "Other"
 }
 
+struct FileNode: Identifiable {
+    let id = UUID()
+    let name: String
+    let isDirectory: Bool
+    var children: [FileNode] = []
+    var fileItem: FileItem?
+}
+
 struct FileItem: Identifiable {
     let id = UUID()
     let name: String
@@ -30,6 +38,10 @@ struct FileItem: Identifiable {
         return content.split(separator: " ").count
     }
     var subtype: SubType
+    var interface : String
+    var interfaceCount: Int {
+        return interface.split(separator: " ").count
+    }
 }
 
 class XcodeProjectManager: ObservableObject {
@@ -51,8 +63,7 @@ class XcodeProjectManager: ObservableObject {
     var uniqueSubTypesInFileItems: Set<SubType> {
         Set(fileList.map { $0.subtype })
     }
-
-
+    let extractor = SwiftInterfaceExtractor()
     
     func selectProjectFolder() {
         let openPanel = NSOpenPanel()
@@ -106,6 +117,7 @@ class XcodeProjectManager: ObservableObject {
     func generateDocumentation() {
         guard let projectURL = projectURL else { return }
         
+        
         //fileList = [] // Reset fileList
 
         do {
@@ -132,7 +144,8 @@ class XcodeProjectManager: ObservableObject {
                     if filePath.isDirectory { continue }
                     let fileContent = try String(contentsOfFile: filePath.string)
                     let subType = determineSubType(name: source.path ?? "Unnamed", content: fileContent)
-                    let fileItem = FileItem(name: source.path ?? "Unnamed", content: fileContent, isSelected: true, subtype: subType)
+                    let interface = try extractor.extractPublicInterface(from: fileContent)
+                    let fileItem = FileItem(name: source.path ?? "Unnamed", content: fileContent, isSelected: true, subtype: subType, interface: interface)
                     fileList.append(fileItem) // Add file to fileList
 
                     documentation += "\n\(fileItem.name)\n\(fileContent)\n"

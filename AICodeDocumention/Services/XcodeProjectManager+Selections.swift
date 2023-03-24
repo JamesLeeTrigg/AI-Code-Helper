@@ -9,12 +9,12 @@ import Foundation
 extension XcodeProjectManager {
     func selectAll() {
         // Implement the functionality to select all files
-        fileList = fileList.map { FileItem(name: $0.name, content: $0.content, isSelected: true, subtype: $0.subtype) }
+        fileList = fileList.map { FileItem(name: $0.name, content: $0.content, isSelected: true, subtype: $0.subtype, interface: $0.interface) }
     }
     
     func selectNone() {
         // Implement the functionality to deselect all files
-        fileList = fileList.map { FileItem(name: $0.name, content: $0.content, isSelected: false, subtype: $0.subtype) }
+        fileList = fileList.map { FileItem(name: $0.name, content: $0.content, isSelected: false, subtype: $0.subtype, interface: $0.interface) }
     }
     
     func toggleViews() {
